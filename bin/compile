@@ -17,10 +17,16 @@ function indent() {
 
 cd $BUILD_DIR
 
+#autogen
+if [ -f autogen.sh ]; then
+  echo "-----> Running autogen.sh"
+  ./autogen.sh 2>&1 | indent
+fi
+
 # configure
 if [ -f configure ]; then
   echo "-----> Configuring"
-  ./configure CFLAGS="-O3" 2>&1 | indent
+  ./configure CFLAGS="-O3"  2>&1 | indent
 fi
 
 # make

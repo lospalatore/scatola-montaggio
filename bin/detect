@@ -1,8 +1,5 @@
 #!/usr/bin/env bash
 # bin/detect <build-dir>
-
-if [[ -f $1/Makefile  ||  -f $1/configure ]]; then
-  echo "C" && exit 0
-else
-  echo "no" && exit 1
-fi
+BUILD_DIR=$1
+cd $BUILD_DIR
+ls -U *.c > /dev/null 2>&1 && (echo "C") || exit 1
